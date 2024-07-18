@@ -2,58 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; // Import the correct User model
+use App\Models\User;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class authcontroller extends Controller
 {
-    // Controller for registration
-    public function register(Request $request)
-    {
-        // Validation
-        $fields = $request->validate([
-            'username' => ['required', 'max:255'],
-            'email' => ['required', 'max:255', 'email', 'unique:users'],
-            'password' => ['required', 'min:3', 'confirmed'],
-        ]);
+    // register user
+    public function register(Request $request){
+        // validathe the request
+       $fields = $request->validate([
+                'username' => ['required','max:255'],
+                'email' => ['required','max:255','email','unique:users'],
+                'password' => ['required','min:4','confirmed']
+     ]);
+            // hash the password
+            $fields['password'] = Hash::make($fields['password']);
+        // register
+        $user =User::create($fields);
 
-        // Creating user
-        $user = User::create([
-            'username' => $fields['username'],
-            'email' => $fields['email'],
-            'password' => Hash::make($fields['password']), // Hash the password
-        ]);
-
-        // Login the user
+        // login
         Auth::login($user);
 
-        // Redirect
-        return redirect()->intended('dashboard');
+        // redirect
+      //  return redirect()->route('home');
+       return redirect()->route('questions.show');
+
+    }
+    public function login(Request $request){
+        // validathe the request
+        $fields = $request->validate([
+            'email' => ['required','max:255','email'],
+            'password' => ['required']
+       ]);
+
+          // try to login user
+          if(Auth::attempt($fields, $request->remember)){
+            return redirect()->route('questions.show');
+          }
+          else {
+            return back() -> withInput($request->only('email', 'remember'))
+            ->withErrors(['failed' => 'These credentials do not match our records.']);
+          }
+        //
     }
 
-    // Controller for login
-    public function login(Request $request)
-    {
-        // Validation
-        $credentials = $request->validate([
-            'email' => ['required', 'max:255' ],
-            'password' => ['required'],
-        ]);
+    // logout user
+    public function logout(Request $request){
+      Auth::logout();
 
-                // Attempt to log the user in
-         if (Auth::attempt($credentials)) {
-        // Authentication was successful
-             $request->session()->regenerate();
-             return redirect()->intended('dashboard');
-                }
+      $request->session()->invalidate();
+      $request ->session() ->regenerateToken();
 
-         // Authentication failed
-           return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-           ])->onlyInput('email');
+      return redirect('/');
 
     }
 }
-

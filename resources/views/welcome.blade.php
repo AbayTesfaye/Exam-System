@@ -1,7 +1,18 @@
 <x-layout>
-    <div class="flex flex-col items-center mt-8 min-h-screen  text-center p-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Welcome to QuizApp!</h1>
-        <p class="text-lg text-gray-700 mb-8">Get started now and test your knowledge.</p>
-        <a href="/login" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Get Started</a>
-    </div>
+
+        <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+            <div class="container mx-auto p-4">
+                <div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+                    <div class="p-6">
+                        <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">Welcome to Our Quiz</h1>
+                        <p class="text-lg mb-6 text-center text-gray-700">Test your knowledge with our fun quiz. Are you ready?</p>
+                        <div class="flex justify-center">
+                            <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-md text-lg transition-colors duration-200 shadow-md">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 </x-layout>

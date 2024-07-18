@@ -1,5 +1,5 @@
 <x-layout>
-  <h1 class="text-3xl font-bold mb-4 text-center">Welcome to Sign-In</h1>
+    <h1 class="text-3xl font-bold mb-4 text-center">Welcome to Sign-In </h1>
   <div class="mx-auto max-w-screen-sm bg-white shadow-md rounded-lg p-6">
       <form action="{{ route('login') }}" method="POST">
           @csrf
@@ -17,6 +17,14 @@
                   <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
               @enderror
           </div>
+          {{-- Remember checkbox --}}
+          <div class="mb-2">
+            <input type="checkbox" name="remember" id="remember">
+            <label for="remember">Remember Me</label>
+          </div>
+          @error('failed')
+          <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+          @enderror
           <div class="mb-2">
               <button type="submit" class="btn bg-blue-500 text-white px-4 py-2 rounded-lg focus:outline-none hover:bg-blue-600">Login</button>
           </div>
