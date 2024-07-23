@@ -1,14 +1,4 @@
 <x-lay>
-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quiz Completed</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    </head>
-    <body class="bg-gray-100">
         <div class="container mx-auto p-4">
             <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="p-6 text-center">
@@ -22,8 +12,4 @@
                 </div>
             </div>
         </div>
-    </body>
-    </html>
-
-
 </x-lay>

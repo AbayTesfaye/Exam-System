@@ -28,10 +28,11 @@ class authcontroller extends Controller
 
         // redirect
       //  return redirect()->route('home');
-       return redirect()->route('questions.show');
+       return redirect()->route('questions.start');
 
     }
     public function login(Request $request){
+     
         // validathe the request
         $fields = $request->validate([
             'email' => ['required','max:255','email'],
@@ -40,7 +41,7 @@ class authcontroller extends Controller
 
           // try to login user
           if(Auth::attempt($fields, $request->remember)){
-            return redirect()->route('questions.show');
+            return redirect()->route('questions.start');
           }
           else {
             return back() -> withInput($request->only('email', 'remember'))

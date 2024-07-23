@@ -1,5 +1,4 @@
 <x-layout>
-    <h1 class="text-3xl font-bold mb-4 text-center">Welcome to Sign-In </h1>
   <div class="mx-auto max-w-screen-sm bg-white shadow-md rounded-lg p-6">
       <form action="{{ route('login') }}" method="POST">
           @csrf

@@ -25,12 +25,10 @@ Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 // Define quiz routes
-Route::get('/start', [QuestionController::class, 'start'])->name('quiz.start');
+Route::get('/questions/start', [QuestionController::class, 'start'])->name('questions.start');
 Route::get('/questions', [QuestionController::class, 'show'])->name('questions.show');
 Route::post('/questions/answer', [QuestionController::class, 'answer'])->name('questions.answer');
 Route::get('/questions/reset', function () {
-    // Session::forget('questionIndex');
-    // Session::forget('correctAnswers');
     return redirect()->route('quiz.start');
 })->name('questions.reset');
 
@@ -43,3 +41,9 @@ Route::post('/questions/add', [QuestionController::class, 'store'])->name('quest
 // New routes for viewing and deleting questions
 Route::get('/questions/view', [QuestionController::class, 'index'])->name('questions.index');
 Route::delete('/questions/{id}', [QuestionController::class, 'destroy'])->name('questions.destroy');
+
+
+Route::get('/quiz/start', [QuestionController::class, 'start'])->name('quiz.start');
+
+
+Route::get('/results', [QuestionController::class, 'results'])->name('questions.results'); // New route for viewing results
