@@ -32,7 +32,7 @@ class authcontroller extends Controller
 
     }
 
-    
+
     public function login(Request $request){
         // validate the request
         $fields = $request->validate([
@@ -44,7 +44,7 @@ class authcontroller extends Controller
         if (Auth::attempt($fields, $request->remember)) {
             $user = Auth::user();
             if ($user->role == 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('users.dashboard');
             } else {
                 return redirect()->route('questions.start');
             }

@@ -22,7 +22,7 @@
       background-size: cover;
       background-position: top;
       position: relative;
-      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+
     }
   </style>
 </head>

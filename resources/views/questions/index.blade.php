@@ -23,10 +23,12 @@
                     Back to Dashboard
                 </a>
 
-                <h1 class="text-3xl font-bold mb-6 text-center">Questions</h1>
+                <!-- Total Number of Questions -->
+                <h1 class="text-3xl font-bold mb-6 text-center">Total Questions: {{ count($questions) }}</h1>
                 @foreach ($questions as $question)
                     <div class="mb-4">
-                        <h2 class="text-xl font-semibold">{{ $question->question }}</h2>
+                        <!-- Question Number -->
+                        <h2 class="text-xl font-semibold">{{ $loop->iteration }}. {{ $question->question }}</h2>
                         <ul class="list-disc ml-6">
                             @php
                                 $choices = is_string($question->choices) ? json_decode($question->choices, true) : $question->choices;
