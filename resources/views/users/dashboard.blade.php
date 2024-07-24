@@ -41,9 +41,9 @@
             {{-- dropdown menu --}}
             <div x-show="open" x-cloak class="dropdown-menu bg-white shadow-lg absolute top-12 right-0 rounded-lg overflow-hidden font-light z-50 w-48">
               <p class="px-4 py-2 text-gray-700 font-semibold">{{ auth()->user()->username }}</p>
-              @if(auth()->user()->username === 'Admin' && auth()->user()->password === bcrypt('admin_password'))
+              {{-- @if(auth()->user()->role === 'admin')
                 <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">Dashboard</a>
-              @endif
+              @endif --}}
               <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">Logout</button>
@@ -56,7 +56,7 @@
   </nav>
   <main class="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
     <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
-      @if(auth()->user()->username === 'Admin')
+      @if(auth()->user()->role === 'admin')
         <h1 class="text-2xl font-bold mb-6 text-gray-800">Welcome Admin</h1>
         <div class="flex flex-col space-y-4">
           <a href="{{ route('questions.index') }}" class="block text-center text-white bg-gray-800 hover:bg-gray-700 rounded-md px-4 py-2 text-lg font-medium transition-colors duration-300">View Questions</a>

@@ -42,7 +42,9 @@
               {{-- dropdown menu --}}
               <div x-show="open" x-cloak class="bg-white shadow-lg absolute top-12 right-0 rounded-lg overflow-hidden font-light z-50">
                 <p class="px-4 py-2 text-gray-700">{{ auth()->user()->username }}</p>
-                <a href="{{ route('dashboard')}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</a>
+                {{-- @if(auth()->user()->role === 'admin')
+                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors">Dashboard</a>
+              @endif --}}
                 <form action="{{ route('logout')}}" method="POST">
                   @csrf
                   <button class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</button>

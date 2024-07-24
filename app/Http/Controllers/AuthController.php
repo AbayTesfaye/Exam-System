@@ -31,23 +31,27 @@ class authcontroller extends Controller
        return redirect()->route('questions.start');
 
     }
-    public function login(Request $request){
-     
-        // validathe the request
-        $fields = $request->validate([
-            'email' => ['required','max:255','email'],
-            'password' => ['required']
-       ]);
 
-          // try to login user
-          if(Auth::attempt($fields, $request->remember)){
-            return redirect()->route('questions.start');
-          }
-          else {
-            return back() -> withInput($request->only('email', 'remember'))
-            ->withErrors(['failed' => 'These credentials do not match our records.']);
-          }
-        //
+    
+    public function login(Request $request){
+        // validate the request
+        $fields = $request->validate([
+            'email' => ['required', 'max:255', 'email'],
+            'password' => ['required']
+        ]);
+
+        // try to login user
+        if (Auth::attempt($fields, $request->remember)) {
+            $user = Auth::user();
+            if ($user->role == 'admin') {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('questions.start');
+            }
+        } else {
+            return back()->withInput($request->only('email', 'remember'))
+                         ->withErrors(['failed' => 'These credentials do not match our records.']);
+        }
     }
 
     // logout user

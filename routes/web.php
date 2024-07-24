@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,3 +48,5 @@ Route::get('/quiz/start', [QuestionController::class, 'start'])->name('quiz.star
 
 
 Route::get('/results', [QuestionController::class, 'results'])->name('questions.results'); // New route for viewing results
+
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
