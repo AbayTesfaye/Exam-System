@@ -1,4 +1,4 @@
-<x-lay>
+{{-- <x-lay>
         <div class="container mx-auto p-4">
             <div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
                 <div class="p-6 text-center">
@@ -12,4 +12,4 @@
                 </div>
             </div>
         </div>
-</x-lay>
+</x-lay> --}}
